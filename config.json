@@ -1,0 +1,123 @@
+
+{
+  "general": {
+    "project_name": "Generative Models Comparison",
+    "dataset": "Fashion-MNIST",
+    "random_seed": 42,
+    "image_size": 28,
+    "image_channels": 1,
+    "image_shape": [1, 28, 28],
+    "input_dim": 784,
+    "num_classes": 10,
+    "batch_size": 128,
+    "data_split": {
+      "train": 0.8,
+      "validation": 0.1,
+      "test": 0.1
+    },
+    "normalization": {
+      "default_min": 0.0,
+      "default_max": 1.0,
+      "gan_min": -1.0,
+      "gan_max": 1.0
+    },
+    "device": "auto"
+  },
+  "models": {
+    "mlp": {
+      "architecture": [784, 256, 64, 10],
+      "hidden_activation": "ReLU",
+      "output_activation": "None",
+      "inference_activation": "Softmax",
+      "dropout": 0.3,
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "loss": "CrossEntropyLoss",
+      "epochs": 30,
+      "early_stopping_patience": 5
+    },
+    "vanilla_ae": {
+      "encoder": [784, 512, 256, 64],
+      "decoder": [64, 256, 512, 784],
+      "latent_dim": 64,
+      "hidden_activation": "ReLU",
+      "output_activation": "Sigmoid",
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "loss": "MSELoss",
+      "epochs": 50
+    },
+    "sparse_ae": {
+      "encoder": [784, 512, 256, 64],
+      "decoder": [64, 256, 512, 784],
+      "latent_dim": 64,
+      "hidden_activation": "ReLU",
+      "output_activation": "Sigmoid",
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "loss": "MSELoss",
+      "sparsity_lambda": 0.001,
+      "epochs": 50
+    },
+    "vae": {
+      "encoder": [784, 512, 256],
+      "latent_dim": 64,
+      "decoder": [64, 256, 512, 784],
+      "hidden_activation": "ReLU",
+      "output_activation": "Sigmoid",
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "reconstruction_loss": "MSELoss",
+      "kl_weight": 1.0,
+      "epochs": 50
+    },
+    "vanilla_gan": {
+      "generator": [100, 256, 512, 1024, 784],
+      "discriminator": [784, 512, 256, 1],
+      "noise_dim": 100,
+      "generator_activation": ["ReLU", "Tanh"],
+      "discriminator_activation": ["LeakyReLU", "Sigmoid"],
+      "optimizer": "Adam",
+      "learning_rate": 0.0002,
+      "betas": [0.5, 0.999],
+      "loss": "BCELoss",
+      "epochs": 100
+    },
+    "dcgan": {
+      "noise_dim": 100,
+      "generator_channels": [128, 64, 1],
+      "discriminator_channels": [1, 64, 128],
+      "kernel_size": 4,
+      "stride": 2,
+      "padding": 1,
+      "generator_activation": ["ReLU", "Tanh"],
+      "discriminator_activation": ["LeakyReLU", "Sigmoid"],
+      "optimizer": "Adam",
+      "learning_rate": 0.0002,
+      "betas": [0.5, 0.999],
+      "loss": "BCELoss",
+      "epochs": 100
+    },
+    "ddpm": {
+      "input_shape": [1, 28, 28],
+      "architecture": "U-Net",
+      "channels": [64, 128, 256],
+      "activation": "ReLU",
+      "optimizer": "Adam",
+      "learning_rate": 0.0002,
+      "loss": "MSELoss",
+      "prediction_target": "Noise",
+      "timesteps": 1000,
+      "beta_schedule": "Linear",
+      "beta_start": 0.0001,
+      "beta_end": 0.002,
+      "epochs": 50
+    }
+  },
+  "visualization": {
+    "image_cmap": "gray",
+    "figure_dpi": 100,
+    "save_format": "png"
+  }
+}
