@@ -27,3 +27,13 @@ results/*
 # System files
 .DS_Store
 Thumbs.db
+
+# Local PyTorch cache
+torch_cache/
+
+# DDPM local checkpoints and outputs
+DDPM_Complete_Outputs/
+
+# Temporary or duplicate notebooks
+notebooks/08_ddpm_draft.ipynb
+notebooks/ddpm-model (4).ipynb
