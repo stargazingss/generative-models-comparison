@@ -43,24 +43,20 @@ The main focus is to compare reconstruction fidelity, generative quality, latent
 ## Models
 
 Six generative models were implemented and evaluated:
-
-Vanilla Autoencoder (AE): Learns image reconstruction through an encoder-decoder architecture. 
-Sparse Autoencoder (Sparse AE): Introduces sparsity regularization to encourage more selective latent representations. 
-Variational Autoencoder (VAE): Learns a probabilistic latent space using reconstruction loss and KL divergence. 
-Vanilla GAN: Uses a generator and discriminator with fully connected layers to generate images. 
-Deep Convolutional GAN (DCGAN): Uses convolutional architectures to learn spatial image features and generate images. 
-Denoising Diffusion Probabilistic Model (DDPM): Generates images through an iterative denoising process. 
+- Vanilla Autoencoder (AE): Learns image reconstruction through an encoder-decoder architecture. 
+- Sparse Autoencoder (Sparse AE): Introduces sparsity regularization to encourage more selective latent representations. 
+- Variational Autoencoder (VAE): Learns a probabilistic latent space using reconstruction loss and KL divergence. 
+- Vanilla GAN: Uses a generator and discriminator with fully connected layers to generate images. 
+- Deep Convolutional GAN (DCGAN): Uses convolutional architectures to learn spatial image features and generate images. 
+- Denoising Diffusion Probabilistic Model (DDPM): Generates images through an iterative denoising process. 
 
 ## Dataset
 
-Fashion-MNIST is used as the primary dataset. It contains grayscale images of clothing items with a resolution of 28 × 28 pixels across 10 categories.
-
-The dataset is used for model training, validation, reconstruction evaluation, random generation, and latent space interpolation.
+Fashion-MNIST is used as the primary dataset. It contains grayscale images of clothing items with a resolution of 28 × 28 pixels across 10 categories. The dataset is used for model training, validation, reconstruction evaluation, random generation, and latent space interpolation.
 
 ## Experimental Objectives
 
 The experiments are conducted to:
-
 - Compare reconstruction quality between Vanilla AE, Sparse AE, and VAE.
 - Evaluate image generation quality using VAE, Vanilla GAN, DCGAN, and DDPM.
 - Analyze training behavior and stability across different architectures.
@@ -92,55 +88,6 @@ Vanilla AE achieved the best reconstruction performance, with the lowest MSE and
 | DDPM | 126.3215 | 198.40812 s |
 
 DCGAN achieved the lowest FID among the evaluated generative models. Vanilla GAN had the lowest inference latency, while DDPM required significantly longer generation time due to its iterative denoising process.
-
-## Visual Results
-
-### 1. Image Reconstruction
-
-Comparison of original Fashion-MNIST images and their reconstructions using Vanilla AE, Sparse AE, and VAE.
-
-![Reconstruction Results](results/reconstruction_comparison.png)
-
-Vanilla AE and Sparse AE preserved image structures relatively well. VAE produced smoother reconstructions with less clearly defined details.
-
-### 2. Random Image Generation
-
-Generated samples from VAE, Vanilla GAN, DCGAN, and DDPM using random sampling.
-
-![Generation Results](results/generation_comparison.png)
-
-DCGAN produced the most recognizable clothing shapes among the evaluated generative models. VAE generated recognizable but blurry samples, while Vanilla GAN and DDPM still showed coarse or pixelated patterns.
-
-### 3. MLP Classifier Generation Limitations
-
-Experiments investigating the use of MLP Classifier weights and latent features for image generation.
-
-![MLP Results](results/mlp_generation_limitation.png)
-
-The experiments include:
-
-- Direct weight transpose projection.
-- Latent weight transpose projection.
-- Frozen latent decoder reconstruction.
-- Random prior sampling.
-
-Direct transpose projections produced unstructured images. The frozen decoder improved reconstruction but remained below Vanilla AE, while random prior sampling generated inconsistent and distorted samples.
-
-### 4. Latent Space Interpolation
-
-Comparison of linear interpolation between two latent vectors across Vanilla AE, Sparse AE, VAE, Vanilla GAN, and DCGAN.
-
-![Interpolation Results](results/latent_interpolation.png)
-
-The interpolation experiments showed different transition behaviors across architectures. Vanilla AE, Sparse AE, and VAE demonstrated gradual transitions between clothing shapes, while Vanilla GAN and DCGAN produced less consistent transitions.
-
-### 5. Training Curves and DDPM Reverse Diffusion
-
-Training and validation loss curves for the six generative models, alongside the DDPM reverse diffusion trajectory.
-
-![Training Curves](results/training_curves.png)
-
-The experiments show different training behaviors depending on the model architecture. Autoencoder-based models demonstrated decreasing reconstruction losses, while GAN models showed different generator and discriminator loss patterns. DDPM was initially trained for 50 epochs and subsequently fine-tuned for 10 additional epochs from the previous checkpoint.
 
 ## MLP Classifier Investigation
 
