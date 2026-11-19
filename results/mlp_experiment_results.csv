@@ -1,0 +1,6 @@
+Experiment,Metric,Result
+MLP Classifier,Test Accuracy,89.5%
+Direct Weight Transpose Projection,Generated Images,10 images
+Latent Transpose Projection,Generated Images,7000 images
+Frozen Latent Decoder,MSE / PSNR / SSIM,0.020743 / 17.6719 dB / 0.6311
+Random Prior Sampling,Generated Images,16 images

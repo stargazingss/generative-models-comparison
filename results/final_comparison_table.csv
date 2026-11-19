@@ -1,0 +1,7 @@
+Model,Latent Dimension,Training Time per Epoch (s),Inference Latency (ms),MSE,PSNR (dB),SSIM,FID,Training Stability
+Vanilla AE,64,Not recorded,0.990269985049963,0.006143,23.3536,0.8367,,Refer to training loss curve
+Sparse AE,64,Not recorded,0.9455900173634292,0.006198,23.3206,0.8353,,Refer to training loss curve
+VAE,64,Not recorded,0.9260999970138072,0.019956,17.6005,0.6273,153.08864901225155,Refer to training loss curve
+Vanilla GAN,100,Not recorded,0.8820999879390001,,,,213.90643405606767,Refer to generator/discriminator loss curves
+DCGAN,100,Not recorded,2.596279978752136,,,,107.43136043898384,Refer to generator/discriminator loss curves
+DDPM,1x28x28 (784),Not recorded,198408.1198000349,,,,126.32151556915518,Refer to training and validation loss curves
